@@ -1,0 +1,241 @@
+@using SHARP_RM.Models
+
+
+
+<main class="page-content">
+	<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+		<div class="ms-auto">
+			<div class="btn-group">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ContactForm">Ajouter Contact</button>
+			</div>
+		</div>
+	</div>
+	<!--end breadcrumb-->
+
+	<div class="card">
+		<div class="card-body">
+			<div class="d-flex align-items-center">
+				<h5 class="mb-0">Contacts</h5>
+				<form class="ms-auto position-relative">
+					<div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-search"></i></div>
+					<input class="form-control ps-5" id="searchContact" type="text" onkeyup='tableSearch()' placeholder="Chercher contact">
+				</form>
+			</div>
+			<div class="table-responsive mt-3">
+				<table class="table align-middle" id="ContactTable" data-filter-control="true" data-show-search-clear-button="true">
+					<thead class="table-secondary">
+						<tr>
+
+							<th>Nom/Prenom</th>
+							<th>Adresse</th>
+							<th>Ville</th>
+							<th>Pays</th>
+							<th>Email</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+
+						@{
+						    foreach(Contact ct in ViewBag.Contacts){
+							
+								<tr>
+
+									<td>
+										<div class="d-flex align-items-center gap-3 cursor-pointer">
+											<img src="~/Content/assets/images/avatars/avatar-1.png" class="rounded-circle" width="44" height="44" alt="">
+											<div class="">
+												<p class="mb-0">@ct.Nom @ct.Prenom</p>
+											</div>
+										</div>
+									</td>
+									<td>@ct.Adresse</td>
+									<td>@ct.Ville</td>
+									<td>@ct.Pays</td>
+									<td>@ct.Email</td>
+									<td>
+										<div class="table-actions d-flex align-items-center gap-3 fs-6">
+											<a href="viewContact?id=@ct.Id" class="text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Views" aria-label="Views"><i class="bi bi-eye-fill"></i></a>
+
+											<a href="../Contact/SupprimerContact?id=@ct.Id" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete"><i class="bi bi-trash-fill"></i></a>
+										</div>
+									</td>
+								</tr>
+						
+								}
+								
+								}
+				
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+</main>
+
+<!-- Modal -->
+<div class="modal fade" id="ContactForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+	<div class="modal-dialog" role="document" style="width:1000px;">
+		<div class="modal-content" style="width:1000px;postition:absolute;right:200px;">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Contact infos</h5>
+
+
+				<a type="button" data-dismiss="modal" aria-label="Close" class="btn btn-outline-dark btn-icon-text"><i class="fadeIn animated bx bx-window-close"></i></a>
+			</div>
+			<div class="modal-body">
+
+				<form action="../Contact/AjouterContact" method="post">
+
+
+
+
+
+
+
+
+					<div class="row">
+						<div class="col">
+							<div class="card">
+								<div class="card-body">
+									<div class="p-4 border rounded">
+
+										<div class="col-md-4" style="width:300px">
+											<label for="validationCustom01" class="form-label">Nom</label>
+											<input type="text" class="form-control" id="validationCustom01" name="nom" required="">
+											<div class="valid-feedback">Looks good!</div>
+										</div>
+										<div class="col-md-4" style="width:300px">
+											<label for="validationCustom02" class="form-label">Prenom</label>
+											<input type="text" class="form-control" id="validationCustom02" name="prenom" required="">
+											<div class="valid-feedback">Looks good!</div>
+										</div>
+										<div class="col-md-4" style="width:300px">
+											<label for="validationCustom02" class="form-label">Email</label>
+											<input type="email" class="form-control" id="validationCustom02" name="email" required="">
+											<div class="valid-feedback">Looks good!</div>
+										</div>
+
+
+
+
+
+
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col">
+							<div class="card">
+								<div class="card-body">
+									<div class="p-4 border rounded">
+										<div class="col-md-4">
+											<label for="validationCustom01" class="form-label">Pays</label>
+											<input type="text" style="width:300px" class="form-control" name="pays" id="validationCustom01" required="">
+											<div class="valid-feedback">Looks good!</div>
+										</div>
+
+										<div class="col-md-4">
+											<label for="validationCustom01" class="form-label">Adresse</label>
+											<input type="text" style="width:300px" class="form-control" name="adresse" id="validationCustom01" required="">
+											<div class="valid-feedback">Looks good!</div>
+										</div>
+										<div class="col-md-4">
+											<label for="validationCustom02" class="form-label">Telephone</label>
+											<input type="text" style="width:300px" class="form-control" name="telephone" id="validationCustom02" required="">
+											<div class="valid-feedback">Looks good!</div>
+										</div>
+										<div class="col-md-4" style="width:300px">
+											<label for="validationCustomUsername" class="form-label">Etat</label>
+											<div class="input-group has-validation">
+												<input type="text" class="form-control" id="validationCustomUsername" name="etat" aria-describedby="inputGroupPrepend" required="">
+												<div class="invalid-feedback">Please choose a username.</div>
+											</div>
+										</div>
+
+										<div class="col-md-4" style="width:300px">
+											<label for="validationCustomUsername" class="form-label">Ville</label>
+											<div class="input-group has-validation">
+												<input type="text" class="form-control" id="validationCustomUsername" name="ville" aria-describedby="inputGroupPrepend" required="">
+												<div class="invalid-feedback">Please choose a username.</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+					</div>
+
+					<div class="card">
+						<div class="card-body">
+							<div class="mb-3">
+								<label for="formFile" class="form-label">Photo</label>
+								<input class="form-control" type="file" id="formFile">
+							</div>
+
+							<div class="mb-3">
+								<label for="formFile" class="form-label">Description</label>
+								<textarea class="form-control" id="exampleTextarea1" name="description" rows="4"></textarea>
+							</div>
+
+						</div>
+					</div>
+
+
+			</div>
+
+
+
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+				<button type="submit" class="btn btn-primary">Ajouter</button>
+			</div>
+		</div>
+
+		</form>
+	</div>
+</div>
+
+
+
+<script type="application/javascript">
+
+	function tableSearch() {
+		let input, filter, table, tr, td, txtValue;
+
+		//Intialising Variables
+		input = document.getElementById("searchContact");
+		filter = input.value.toUpperCase();;
+		table = document.getElementById("ContactTable");
+		tr = table.getElementsByTagName("tr");
+
+		for (let i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[0];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+			}
+		}
+
+	}
+</script>
+

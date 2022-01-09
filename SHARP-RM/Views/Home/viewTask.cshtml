@@ -1,0 +1,258 @@
+@using SHARP_RM.Models
+
+@{
+
+var tk = ViewBag.Task;
+
+var ct = ViewBag.Contact; 
+
+var cts = ViewBag.Contacts;
+
+}
+
+}
+<main class="page-content">
+	<!--breadcrumb-->
+	<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+
+		<div class="ps-3">
+			<nav aria-label="breadcrumb">
+
+			</nav>
+		</div>
+		<div class="ms-auto">
+			<div class="btn-group">
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taskForm">Modifier Task</button>
+
+
+			</div>
+		</div>
+	</div>
+	<!--end breadcrumb-->
+
+
+
+
+
+		<div class="card border shadow-none">
+			<div class="card-header py-3">
+				<div class="row align-items-center g-3">
+					<div class="col-12 col-lg-6">
+						<h5 class="mb-0">@tk.Sujet</h5>
+					</div>
+
+				</div>
+			</div>
+			<div class="card-header py-2 bg-light">
+				<div class="row row-cols-1 row-cols-lg-3">
+					<div class="col">
+						<div class="">
+
+							<div class="col">
+								<div class="card border shadow-none radius-10">
+									<div class="card-body">
+										<div class="d-flex align-items-center gap-3">
+											<div class="icon-box bg-light-success border-0">
+												<i class="fas fa-tasks text-success"></i>
+
+											</div>
+											<div class="info">
+												<h6 class="mb-2">Task infos</h6>
+												<p class="mb-1"><strong>Contact</strong> @tk.Contact</p>
+												<p class="mb-1"><strong>Statut</strong> @tk.Statut</p>
+												<p class="mb-1"><strong>Priorité</strong> @tk.Priorite</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="col">
+						<div class="">
+
+							<div class="card border shadow-none bg-warning radius-10">
+								<div class="card-body">
+									<h5>Description</h5>
+									<div class="d-flex align-items-center gap-3">
+										<div class="fs-1">
+											<i class="fas fa-file-alt"></i>
+										</div>
+										<div class="">
+											<p class="mb-0 fs-6">@tk.Description</p>
+										</div>
+									</div>
+
+
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+					<div class="col">
+						<div class="">
+
+							<div class="card border shadow-none radius-10">
+								<div class="card-body">
+
+									
+										<div class="d-flex align-items-center gap-3">
+											<div class="icon-box bg-light-primary border-0">
+												<a href="viewContact?id=@ct.Id">   <i class="bi bi-person text-primary"></i></a>
+											</div>
+											<div class="info">
+												<h6 class="mb-2">Contact</h6>
+												<p class="mb-1">@ct.Nom @ct.Prenom</p>
+												<p class="mb-1">@ct.Email</p>
+												<p class="mb-1">@ct.Telephone</p>
+											</div>
+										</div>
+
+									</div>
+
+							</div>
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+		</div>
+
+</main>
+
+<div class="modal fade" id="taskForm" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Tasks</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+
+
+
+
+				<div class="row">
+					<div class="col-lg-12 mx-auto">
+						<div class="card">
+							<div class="card-header py-3 bg-transparent">
+								<div class="d-sm-flex align-items-center">
+									<h5 class="mb-2 mb-sm-0">Ajouter task</h5>
+
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="row g-3">
+									<div class="col-12 col-lg-8">
+										<div class="card shadow-none bg-light border">
+											<div class="card-body">
+												<form class="row g-3" action="../Task/ModifierTask" method="post">
+													<input type="hidden" class="form-control" value="@tk.id" name="id" placeholder="">
+													<div class="col-12">
+														<label class="form-label">Sujette</label>
+														<input type="text" name="sujet" class="form-control" placeholder="Nom d'opportunité">
+													</div>
+													<div class="col-12 col-lg-4">
+														<label class="form-label">Contact</label>
+														<select name="contact" class="form-select">
+															<option value=""></option>
+															@{
+
+							                    foreach(Contact contact in cts){
+
+																<option value="@contact.Nom">@contact.Nom</option>
+
+											                	}
+															}
+														</select>
+													</div>
+													<div class="col-12 col-lg-4">
+														<label class="form-label">Statut</label>
+														<select name="statut" class="form-select">
+															<option value=""></option>
+															<option value="Pas commencé">Pas commencé</option>
+															<option value="Differee">Différée</option>
+															<option value="En progrès">En progrès</option>
+															<option value="Complete">Complété</option>
+														</select>
+													</div>
+													<div class="col-12 col-lg-4">
+														<label class="form-label">Priorité</label>
+														<select name="priorite" class="form-select">
+															<option value=""></option>
+															<option value="Importante">Importante</option>
+															<option value="Tres Importante">Tres Importante</option>
+															<option value="Moins Importante">Moins Importante</option>
+															<option value="Pas intéresse">Pas intéressé</option>
+														</select>
+													</div>
+
+
+
+
+
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12 col-lg-4">
+										<div class="card shadow-none bg-light border">
+											<div class="card-body">
+												<div class="row g-3">
+
+
+													<div class="col-12">
+														<label class="form-label">Description</label>
+														<textarea class="form-control" placeholder="Votre description" name="description" rows="4" cols="4"></textarea>
+													</div>
+
+
+
+												</div><!--end row-->
+											</div>
+										</div>
+									</div>
+
+								</div><!--end row-->
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+				<button type="submit" class="btn btn-primary">Modifier</button>
+			</div>
+		</div>
+	</div>
+</div>
+							  </form>

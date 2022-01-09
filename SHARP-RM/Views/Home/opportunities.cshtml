@@ -1,0 +1,416 @@
+@using SHARP_RM.Models
+
+@ViewBag.opportunitiesNew
+@ViewBag.opportunitiesWon
+@ViewBag.opportunitiesProposition
+@ViewBag.opportunitiesLost
+@ViewBag.opportunitiesQualified
+
+<main class="page-content">
+
+	<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+
+
+		<div class="ms-auto">
+			<div class="btn-group">
+				<button type="button" data-bs-toggle="modal" data-bs-target="#exampleExtraLargeModal" class="btn btn-primary">Ajouter Opportunity</button>
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="card">
+		<div class="card-body">
+			<ul class="nav nav-pills nav-pills-warning mb-3" role="tablist">
+				<li class="nav-item" role="presentation">
+					<a class="nav-link active" data-bs-toggle="pill" href="#warning-pills-new" role="tab" aria-selected="true">
+						<div class="d-flex align-items-center">
+
+							<div class="tab-title">Nouveau</div>
+						</div>
+					</a>
+				</li>
+
+				<li class="nav-item" role="presentation">
+					<a class="nav-link" data-bs-toggle="pill" href="#warning-pills-qualified" role="tab" aria-selected="false">
+						<div class="d-flex align-items-center">
+
+							<div class="tab-title">Qualifié</div>
+						</div>
+					</a>
+				</li>
+				<li class="nav-item" role="presentation">
+					<a class="nav-link" data-bs-toggle="pill" href="#warning-pills-proposition" role="tab" aria-selected="false">
+						<div class="d-flex align-items-center">
+
+							<div class="tab-title">Proposition</div>
+						</div>
+					</a>
+				</li>
+				<li class="nav-item" role="presentation">
+					<a class="nav-link" data-bs-toggle="pill" href="#warning-pills-won" role="tab" aria-selected="false">
+						<div class="d-flex align-items-center">
+
+							<div class="tab-title">Gagné</div>
+						</div>
+					</a>
+				</li>
+				<li class="nav-item" role="presentation">
+					<a class="nav-link" data-bs-toggle="pill" href="#warning-pills-lost" role="tab" aria-selected="false">
+						<div class="d-flex align-items-center">
+
+							<div class="tab-title">Perdu</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+
+
+			<div class="tab-content">
+				<div class="tab-pane fade active show" id="warning-pills-new" role="tabpanel">
+
+					<div class="product-grid">
+						<div class="row row-cols-1 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-5 g-3">
+
+
+
+
+							@foreach(Opportunity op in ViewBag.opportunitiesNew){
+							<div class="col">
+								<div class="card border shadow-none mb-0">
+									<div class="card-body text-center">
+										<h6 class="product-title">@op.Nom</h6>
+										<p class="product-price fs-5 mb-1"><span>@op.valeur DH</span></p>
+										<div class="rating mb-0">
+											<div class="progress mb-3" style="height:7px;">
+												<div class="progress-bar bg-primary" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<small>@op.date</small>
+										<div class="actions d-flex align-items-center justify-content-center gap-2 mt-3">
+											<a href="viewOpportunity?id=@op.Id" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i> </a>
+											<a href="../Opportunity/SupprimerOpportunity?id=@op.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i> </a>
+										</div>
+									</div>
+								</div>
+							</div>
+							}
+
+
+
+
+
+
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+
+
+
+				<div class="tab-pane fade" id="warning-pills-qualified" role="tabpanel">
+
+					<div class="product-grid">
+						<div class="row row-cols-1 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-5 g-3">
+
+
+							@foreach(Opportunity op in ViewBag.opportunitiesQualified){
+							<div class="col">
+								<div class="card border shadow-none mb-0">
+									<div class="card-body text-center">
+										<h6 class="product-title">@op.Nom</h6>
+										<p class="product-price fs-5 mb-1"><span>@op.valeur DH</span></p>
+										<div class="rating mb-0">
+											<div class="progress mb-3" style="height:7px;">
+												<div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<small>@op.date</small>
+										<div class="actions d-flex align-items-center justify-content-center gap-2 mt-3">
+											<a href="viewOpportunity?id=@op.Id" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i> </a>
+											<a href="../Opportunity/SupprimerOpportunity?id=@op.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i> </a>
+										</div>
+									</div>
+								</div>
+							</div>
+							}
+
+
+
+
+
+
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+				<div class="tab-pane fade" id="warning-pills-proposition" role="tabpanel">
+
+					<div class="product-grid">
+						<div class="row row-cols-1 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-5 g-3">
+
+							@foreach(Opportunity op in ViewBag.opportunitiesProposition){
+							<div class="col">
+								<div class="card border shadow-none mb-0">
+									<div class="card-body text-center">
+										<h6 class="product-title">@op.Nom</h6>
+										<p class="product-price fs-5 mb-1"><span>@op.valeur DH</span></p>
+										<div class="rating mb-0">
+											<div class="progress mb-3" style="height:7px;">
+												<div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<small>@op.date</small>
+										<div class="actions d-flex align-items-center justify-content-center gap-2 mt-3">
+											<a href="viewOpportunity?id=@op.Id" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i> </a>
+											<a href="../Opportunity/SupprimerOpportunity?id=@op.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i> </a>
+										</div>
+									</div>
+								</div>
+							</div>
+							}
+
+
+
+
+
+
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+				<div class="tab-pane fade" id="warning-pills-won" role="tabpanel">
+
+
+
+
+					<div class="product-grid">
+						<div class="row row-cols-1 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-5 g-3">
+
+							@foreach(Opportunity op in ViewBag.opportunitiesWon){
+							<div class="col">
+								<div class="card border shadow-none mb-0">
+									<div class="card-body text-center">
+										<h6 class="product-title">@op.Nom</h6>
+										<p class="product-price fs-5 mb-1"><span>@op.valeur DH</span></p>
+										<div class="rating mb-0">
+											<div class="progress mb-3" style="height:7px;">
+												<div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<small>@op.date</small>
+										<div class="actions d-flex align-items-center justify-content-center gap-2 mt-3">
+											<a href="viewOpportunity?id=@op.Id" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i> </a>
+											<a href="../Opportunity/SupprimerOpportunity?id=@op.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i> </a>
+										</div>
+									</div>
+								</div>
+							</div>
+							}
+
+
+
+
+
+
+						</div>
+
+					</div>
+
+
+
+
+				</div>
+				<div class="tab-pane fade" id="warning-pills-lost" role="tabpanel">
+
+
+
+					<div class="product-grid">
+						<div class="row row-cols-1 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-5 g-3">
+
+
+							
+							@foreach(Opportunity op in ViewBag.opportunitiesLost){
+							<div class="col">
+								<div class="card border shadow-none mb-0">
+									<div class="card-body text-center">
+										<h6 class="product-title">@op.Nom</h6>
+										<p class="product-price fs-5 mb-1"><span>@op.valeur DH</span></p>
+										<div class="rating mb-0">
+											<div class="progress mb-3" style="height:7px;">
+												<div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<small>@op.date</small>
+										<div class="actions d-flex align-items-center justify-content-center gap-2 mt-3">
+											<a href="viewOpportunity?id=@op.Id" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i> </a>
+											<a href="../Opportunity/SupprimerOpportunity?id=@op.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i> </a>
+										</div>
+									</div>
+								</div>
+							</div>
+							}
+
+
+
+
+
+
+						</div>
+
+					</div>
+
+
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</main>
+
+
+<div class="modal fade" id="exampleExtraLargeModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Modal title</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+
+
+
+
+				<div class="row">
+					<div class="col-lg-12 mx-auto">
+						<div class="card">
+							<div class="card-header py-3 bg-transparent">
+								<div class="d-sm-flex align-items-center">
+									<h5 class="mb-2 mb-sm-0">Ajout D'opportunité</h5>
+
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="row g-3">
+									<div class="col-12 col-lg-8">
+										<div class="card shadow-none bg-light border">
+											<div class="card-body">
+												<form class="row g-3" action="../Opportunity/AjouterOpportunity" method="post">
+													<div class="col-12">
+														<label class="form-label">Nom</label>
+														<input type="text" name="nom" class="form-control" placeholder="Nom d'opportunité">
+													</div>
+													<div class="col-12 col-lg-4">
+														<label class="form-label">Propriétaire</label>
+														<select name="owner" class="form-select">
+															<option value="admin">Admin</option>
+															<option value="user">User</option>
+														</select>
+													</div>
+													<div class="col-12 col-lg-4">
+														<label class="form-label">Valeur</label>
+														<input type="text" name="value" class="form-control" placeholder="Valeur d'opportunité">
+													</div>
+													<div class="col-12 col-lg-4">
+														<label class="form-label">Relative à</label>
+														<input type="text" name="Contact" class="form-control" placeholder="Nom du contact">
+													</div>
+													<div class="col-12">
+														<label class="form-label">Source de la transaction</label>
+														<select name="Source" class="form-select">
+															<option value="website">Site Web</option>
+															<option value="ads">Ads</option>
+														</select>
+													</div>
+
+													<div class="col-12">
+														<label class="form-label">Description</label>
+														<textarea class="form-control" placeholder="Full description" name="description" rows="4" cols="4"></textarea>
+													</div>
+
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12 col-lg-4">
+										<div class="card shadow-none bg-light border">
+											<div class="card-body">
+												<div class="row g-3">
+													<div class="col-12">
+														<label class="form-label">Probabilité</label>
+														<input type="text" name="proba" class="form-control" placeholder="Probabilité de gagner l'opportunité">
+													</div>
+													<div class="col-12">
+														<label class="form-label">Statut</label>
+														<select name="statut" class="form-select">
+															<option value="new">Nouveau</option>
+															<option value="qualified">Qualifié</option>
+															<option value="proposition">Propostition</option>
+															<option value="won">Gagné</option>
+															<option value="lost">
+																Perdu
+															</option>
+														</select>
+													</div>
+													<div class="col-12">
+														<label class="form-label">Date d'expiration</label>
+														<input type="date" name="dateexp" class="form-control">
+													</div>
+
+
+
+												</div><!--end row-->
+											</div>
+										</div>
+									</div>
+
+								</div><!--end row-->
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+				<button type="submit" class="btn btn-primary">Ajouter</button>
+			</div>
+		</div>
+	</div>
+</div>
+							  </form>

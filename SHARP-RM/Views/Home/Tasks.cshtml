@@ -1,0 +1,220 @@
+@using SHARP_RM.Models
+
+
+
+<main class="page-content">
+
+
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+              <div class="ms-auto">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taskForm">Ajouter Task</button>
+                  </div>
+              </div>
+            </div>
+
+<div class="card">
+                 <div class="card-body">
+                   <div class="d-flex align-items-center">
+                      <h5 class="mb-0">Taks liste</h5>
+                       <form class="ms-auto position-relative">
+                         <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-search"></i></div>
+                         <input class="form-control ps-5" type="text" id="searchTask" onkeyup='tableSearch()' placeholder="search">
+                       </form>
+                   </div>
+                   <div class="table-responsive mt-3">
+                     
+                     
+                     
+                     
+                     <table class="table mb-0" id="TaskTable">
+									<thead class="table-dark">
+										<tr>
+											<th scope="col">Sujet</th>
+											<th scope="col">Statut</th>
+											<th scope="col">Contact</th>
+											<th scope="col">Priorité</th>
+											<th scope="col"></th>		
+										</tr>
+									</thead>
+									<tbody>
+					 @{
+
+							foreach(Task tk in ViewBag.Tasks){		
+										<tr>
+										
+											<td scope="row">@tk.Sujet</td>
+											<td>@tk.Statut</td>
+											<td>@tk.Contact</td>
+											<td>@tk.Priorite</td>
+											<td>
+                             <div class="table-actions d-flex align-items-center gap-3 fs-6">
+                               <a href="viewTask?id=@tk.id" class="text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Views" aria-label="Views"><i class="bi bi-eye-fill"></i></a>
+                          
+                               <a href="../Task/SupprimerTask?id=@tk.id" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete"><i class="bi bi-trash-fill"></i></a>
+                             </div>
+                           </td>
+										</tr>
+			}			
+             
+                                        }
+
+
+									</tbody>
+								</table>
+                     
+                     
+                     
+                   </div>
+                 </div>
+               </div>
+               </main>
+               								<div class="modal fade" id="taskForm" tabindex="-1" aria-hidden="true">
+											<div class="modal-dialog modal-xl">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title">Tasks</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body">
+												
+												
+												
+												
+												<div class="row">
+                 <div class="col-lg-12 mx-auto">
+                  <div class="card">
+                    <div class="card-header py-3 bg-transparent"> 
+                      <div class="d-sm-flex align-items-center">
+                        <h5 class="mb-2 mb-sm-0">Ajouter task</h5>
+                       
+                      </div>
+                     </div>
+                    <div class="card-body">
+                       <div class="row g-3">
+                         <div class="col-12 col-lg-8">
+                            <div class="card shadow-none bg-light border">
+                              <div class="card-body">
+                                <form class="row g-3" action="../Task/AjouterTask" method="post">
+                          
+                                
+                                  <div class="col-12">
+                                    <label class="form-label">Sujette</label>
+                                    <input type="text" name="sujet" class="form-control" placeholder="Nom d'opportunité">
+                                  </div>
+                                  <div class="col-12 col-lg-4">
+                                    <label class="form-label">Contact</label>
+									<select name="contact" class="form-select">
+										@{
+
+						                           	foreach(Contact ct in ViewBag.Contacts){
+											<option value="@ct.Nom">@ct.Nom</option>
+
+                                            }
+ }
+										</select>
+                                  </div>
+                                  <div class="col-12 col-lg-4">
+                                    <label class="form-label">Statut</label>
+                                    <select name="statut" class="form-select">
+                                        <option value="Pas commencé">Pas commencé</option>
+                                        <option value="Differee">Différée</option>
+                                        <option value="En progrès">En progrès</option>
+                                        <option value="Complete">Complété</option>
+                                      </select>
+                                  </div>
+                                  <div class="col-12 col-lg-4">
+                                    <label class="form-label">Priorité</label>
+                                    <select name="priorite" class="form-select">
+                                        <option value="Importante">Importante</option>
+                                        <option value="Tres Importante">Tres Importante</option>
+                                        <option value="Moins Importante">Moins Importante</option>
+                                        <option value="Pas intéresse">Pas intéressé</option>
+                                      </select>
+                                  </div>
+                                  
+                                  
+                                 
+                                 
+                              
+                              </div>
+                            </div>
+                         </div>
+            
+                         <div class="col-12 col-lg-4">
+                            <div class="card shadow-none bg-light border">
+                              <div class="card-body">
+                                  <div class="row g-3">
+                                   
+                                    
+                                     <div class="col-12">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control" placeholder="Votre description" name="description" rows="4" cols="4"></textarea>
+                                  </div>
+                               
+                                
+
+                                  </div><!--end row-->
+                              </div>
+                            </div>  
+                        </div>
+
+                       </div><!--end row-->
+                     </div>
+                    </div>
+                 </div>
+              </div>
+												
+												
+												
+												
+												
+</div>
+													
+													
+													
+													
+													
+													
+													
+													
+													
+													
+													
+													
+													
+													
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+														<button type="submit" class="btn btn-primary">Ajouter</button>
+													</div>
+												</div>
+											</div>
+										</div>
+							  </form>
+							  
+							  	   	 <script type="application/javascript">
+
+        function tableSearch() {
+            let input, filter, table, tr, td, txtValue;
+
+            //Intialising Variables
+            input = document.getElementById("searchTask");
+            filter = input.value.toUpperCase();;
+            table = document.getElementById("TaskTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (let i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+
+        }
+    </script>   

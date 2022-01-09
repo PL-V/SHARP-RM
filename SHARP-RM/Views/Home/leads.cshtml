@@ -1,0 +1,254 @@
+@using SHARP_RM.Models
+
+
+
+<main class="page-content">
+
+	<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+		<div class="ms-auto">
+			<div class="btn-group">
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#LeadForm">Ajouter Lead</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="card">
+		<div class="card-body">
+			<div class="d-flex align-items-center">
+				<h5 class="mb-0">Lead liste</h5>
+				<form class="ms-auto position-relative">
+					<div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-search"></i></div>
+					<input class="form-control ps-5" type="text" id="searchLead" onkeyup='tableSearch()' placeholder="search">
+				</form>
+			</div>
+			<div class="table-responsive mt-3">
+				<table class="table align-middle mb-0" id="LeadTable">
+					<thead class="table-light">
+						<tr>
+							<th>Nom/Prenom</th>
+							<th>Title</th>
+							<th>Telephone</th>
+							<th>Email</th>
+							<th>LeadOwner</th>
+							<th>Revenu annuel</th>
+							<th>LeadSource</th>
+							<th></th>
+
+						</tr>
+					</thead>
+					<tbody>
+						@{
+						    foreach(Lead ld in ViewBag.Leads){
+
+							<tr>
+
+
+								<td>
+									<div class="d-flex align-items-center gap-3 cursor-pointer">
+										<img src="~/Content/assets/images/avatars/avatar-1.png" class="rounded-circle" width="44" height="44" alt="">
+										<div class="">
+											<p class="mb-0">@ld.Nom @ld.Prenom</p>
+										</div>
+									</div>
+								</td>
+
+								<td>@ld.Title</td>
+								<td>@ld.Telephone</td>
+								<td>@ld.email</td>
+								<td>@ld.LeadOwner</td>
+								<td>@ld.Revenu DH</td>
+								<td>@ld.LeadSource</td>
+								<td>
+									<div class="table-actions d-flex align-items-center gap-3 fs-6">
+										<a href="viewLead?id=@ld.id" class="text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Views" aria-label="Views"><i class="bi bi-eye-fill"></i></a>
+
+										<a href="../Lead/SupprimerLead?id=@ld.id" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete"><i class="bi bi-trash-fill"></i></a>
+									</div>
+								</td>
+							</tr>
+
+          }
+
+						}
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</main>
+
+
+
+
+<div class="modal fade" id="LeadForm" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Ajouter Lead</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+
+				<div class="row">
+
+					<div class="col">
+						<div class="card">
+							<div class="card-body">
+								<div class="p-4 border rounded">
+									<form class="row g-3 needs-validation" method="post" action="../Lead/AjouterLead">
+										<div class="col-md-6">
+											<label for="validationCustom01" class="form-label">Nom</label>
+											<input type="text" class="form-control" name="nom" id="validationCustom01" value="" required="">
+
+										</div>
+										<div class="col-md-6">
+											<label for="validationCustom02" class="form-label">Prenom</label>
+											<input type="text" class="form-control" name="prenom" id="validationCustom02" value="" required="">
+
+										</div>
+										<div class="col-md-6">
+											<label for="validationCustomUsername" class="form-label">Email</label>
+											<div class="input-group has-validation">
+												<span class="input-group-text" id="inputGroupPrepend">@@</span>
+												<input type="text" class="form-control" name="email" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required="">
+
+											</div>
+										</div>
+										<div class="col-md-6">
+											<label for="validationCustom03" class="form-label">Title</label>
+											<input type="text" class="form-control" name="title" id="validationCustom03" required="">
+
+										</div>
+										<div class="col-md-5">
+											<label for="validationCustom04" class="form-label">Lead Owner</label>
+											<select class="form-select" name="leadowner" id="validationCustom04" required="">
+
+												<option value="Admin">Admin</option>
+											</select>
+
+										</div>
+										<div class="col-md-7">
+											<label for="validationCustom05" class="form-label">Telephone</label>
+											<input type="text" class="form-control" name="telephone" id="validationCustom05" required="">
+
+										</div>
+
+										<div class="col-md-4">
+											<label for="validationCustom05" class="form-label">Revenu annuel</label>
+											<div class="input-group has-validation">
+												<span class="input-group-text" id="inputGroupPrepend">$</span>
+												<input type="text" class="form-control" name="revenu" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required="">
+
+											</div>
+
+										</div>
+
+										<div class="col-md-8">
+											<label for="validationCustom04" class="form-label">Lead Source</label>
+											<select class="form-select" name="leadsource" id="validationCustom04" required="">
+
+												<option value="ads">Ads</option>
+												<option value="appel">Appel</option>
+												<option value="linkdin">Linkedin</option>
+												<option value="twitter">Twitter</option>
+											</select>
+
+										</div>
+
+
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+					<div class="col">
+
+
+
+						<div class="card shadow-none border">
+
+							<div class="card-body">
+
+								<div class="col-12">
+									<label class="form-label">Adresse</label>
+									<input type="text" name="adresse" class="form-control" value="">
+								</div>
+								<div class="col-6">
+									<label class="form-label">Ville</label>
+									<input type="text" name="ville" class="form-control" value="">
+								</div>
+								<div class="col-6">
+									<label class="form-label">Pays</label>
+									<input type="text" name="pays" class="form-control" value="">
+								</div>
+
+								<div class="col-12">
+									<label class="form-label">Description</label>
+									<textarea class="form-control" name="description" rows="4" cols="4" placeholder=""></textarea>
+								</div>
+
+							</div>
+						</div>
+
+
+					</div>
+
+
+
+
+
+
+
+
+				</div>
+
+
+			</div>
+
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+				<button type="submit" class="btn btn-primary">Ajouter</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+	   	</form>
+
+
+
+
+<script type="application/javascript">
+
+	function tableSearch() {
+		let input, filter, table, tr, td, txtValue;
+
+		//Intialising Variables
+		input = document.getElementById("searchLead");
+		filter = input.value.toUpperCase();;
+		table = document.getElementById("LeadTable");
+		tr = table.getElementsByTagName("tr");
+
+		for (let i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[0];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+			}
+		}
+
+	}
+</script>   

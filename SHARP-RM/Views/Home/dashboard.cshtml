@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Client Management System || Home Page</title>
+    <link href="css/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+    <link href="fontawesome/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- header -->
+            <div class="col-lg-2" id="spy">
+                <div class="header-agile">
+                    <h1>
+                        <a class="navbar-brand" href="index.php">
+                           CRM
+                        </a>
+                    </h1>
+                </div>
+                <ul class="nav nav-pills flex-column mt-lg-5">
+                    <li class="nav-item"><a class="nav-link active" href="index.jsp">Home</a></li>
+                    
+                    <button type="button" class="btn btn-block mt-lg-5 mt-3 w3ls-btn p-1 btn-theme text-white  text-uppercase font-weight-bold">
+                    <a class="nav-link" href="login.jsp">Admin</a>
+                </button>
+                <button type="button" class="btn btn-block mt-lg-5 mt-3 w3ls-btn p-1 btn-theme text-white  text-uppercase font-weight-bold">
+                    <a class="nav-link" href="client/index.php">Client</a>
+                </button>
+                </ul>
+                
+            </div>
+            <!-- //header -->
+            <!-- main -->
+            <div class="col-lg-10 scrollspy-example pr-0" data-spy="scroll" data-target="#spy">
+                <!-- banner -->
+                <div id="home" class="w3ls-banner d-flex  align-items-center justify-content-center">
+                    <div class="bnr-w3pvt text-center">
+                        <h4>Bonjour !!</h4>
+                        <h2 class="bnr-txt-w3">Customer Relationship Management</h2>
+                        <p>Un simple CRM pour une enterprise</p>
+                       
+                    </div>
+                </div>
+              
+
+            </div>
+
+        </div>
+    </div>
+  
+  
+
+    <!-- js -->
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <!-- //js -->
+    <!-- start-smooth-scrolling -->
+    <script src="js/move-top.js"></script>
+    <script src="js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear' 
+            };
+            */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <script src="js/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <script>
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
+
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            else
+                document.getElementById("password2").setCustomValidity('');
+            //empty string means no validation error
+        }
+    </script>
+    <!-- script for password match -->
+
+    <!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

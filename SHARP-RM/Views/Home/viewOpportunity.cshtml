@@ -1,0 +1,247 @@
+@using SHARP_RM.Models
+
+
+@{
+
+var op = ViewBag.Opportunity;
+var ct = ViewBag.Contact;
+
+
+}
+
+<main class="page-content">
+
+	<div class="card">
+
+		<div class="card-header py-3">
+			<div class="row g-3 align-items-center">
+				<div class="col-12 col-lg-4 col-md-6 me-auto">
+					<h5 class="mb-1">@op.date PM</h5>
+					<p class="mb-0">Opportinite ID : @op.Id</p>
+				</div>
+				<div class="col-12 col-lg-3 col-6 col-md-3">
+					<button type="button" data-bs-toggle="modal" data-bs-target="#exampleExtraLargeModal" class="btn btn-primary">Modifier Opportinite</button>
+
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="row row-cols-1 row-cols-xl-2 row-cols-xxl-3">
+				<div class="col">
+					<div class="card border shadow-none radius-10">
+						<div class="card-body">
+							<div class="d-flex align-items-center gap-3">
+
+
+								<div class="icon-box bg-light-primary border-0">
+									<a href="viewContact?id=@ct.Id">   <i class="bi bi-person text-primary"></i></a>
+								</div>
+
+
+
+								<div class="info">
+									<h6 class="mb-2">Contact</h6>
+									<p class="mb-1">@ct.Nom @ct.Prenom</p>
+									<p class="mb-1">@ct.Email</p>
+									<p class="mb-1">@ct.Telephone</p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card border shadow-none radius-10">
+						<div class="card-body">
+							<div class="d-flex align-items-center gap-3">
+								<div class="icon-box bg-light-success border-0">
+									<i class="lni lni-dollar text-success"></i>
+
+								</div>
+								<div class="info">
+									<h6 class="mb-2">Opportunité informations</h6>
+									<p class="mb-1"><strong>Nom</strong> : @op.Nom</p>
+									<p class="mb-1"><strong>Valeur</strong> : @op.valeur DH</p>
+									<p class="mb-1"><strong>Statut</strong> : @op.status</p>
+									<p class="mb-1"><strong>Date d'expiration</strong> : @op.date</p>
+									<p class="mb-1"><strong>Probabilité</strong> : @op.probabilite</p>
+									<p class="mb-1"><strong>Source</strong> :  @op.source</p>
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+
+
+			</div>
+
+
+			<div class="card border shadow-none bg-warning radius-10">
+				<div class="card-body">
+					<h5>Description</h5>
+					<div class="d-flex align-items-center gap-3">
+						<div class="fs-1">
+							<i class="fas fa-file-alt"></i>
+						</div>
+						<div class="">
+							<p class="mb-0 fs-6">@op.description</p>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+		</div><!--end row-->
+		</c:forEach>
+
+	</div>
+
+
+
+
+</main>
+
+
+
+
+<div class="modal fade" id="exampleExtraLargeModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Modal title</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+
+
+
+
+				<div class="row">
+					<div class="col-lg-12 mx-auto">
+						<div class="card">
+							<div class="card-header py-3 bg-transparent">
+								<div class="d-sm-flex align-items-center">
+									<h5 class="mb-2 mb-sm-0">Mofier Opportunité</h5>
+
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="row g-3">
+									<div class="col-12 col-lg-8">
+										<div class="card shadow-none bg-light border">
+											<div class="card-body">
+												<form class="row g-3" action="../Opportunity/ModifierOpportunity" method="post">
+
+													<input type="hidden" class="form-control" value="@op.Id" name="id" placeholder="">
+
+
+													<div class="col-12">
+														<label class="form-label">Nom</label>
+														<input type="text" name="nom" class="form-control" placeholder="Nom d'opportunité">
+													</div>
+													<div class="col-12 col-lg-4">
+														<label class="form-label">Propriétaire</label>
+														<select name="owner" class="form-select">
+															<option value=""></option>
+															<option value="admin">Admin</option>
+															<option value="user">User</option>
+														</select>
+													</div>
+													<div class="col-12 col-lg-4">
+														<label class="form-label">Valeur</label>
+														<input type="text" name="value" class="form-control" placeholder="Valeur d'opportunité">
+													</div>
+													<div class="col-12 col-lg-4">
+														<label class="form-label">Relative à</label>
+														<input type="text" name="Contact" class="form-control" placeholder="Nom du contact">
+													</div>
+													<div class="col-12">
+														<label class="form-label">Source de la transaction</label>
+														<select name="Source" class="form-select">
+															<option value=""></option>
+															<option value="website">Site Web</option>
+															<option value="ads">Ads</option>
+														</select>
+													</div>
+
+													<div class="col-12">
+														<label class="form-label">Description</label>
+														<textarea class="form-control" placeholder="Full description" name="description" rows="4" cols="4"></textarea>
+													</div>
+
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12 col-lg-4">
+										<div class="card shadow-none bg-light border">
+											<div class="card-body">
+												<div class="row g-3">
+													<div class="col-12">
+														<label class="form-label">Probabilité</label>
+														<input type="text" name="proba" class="form-control" placeholder="Probabilité de gagner l'opportunité">
+													</div>
+													<div class="col-12">
+														<label class="form-label">Statut</label>
+														<select name="statut" class="form-select">
+															<option value=""></option>
+
+															<option value="new">Nouveau</option>
+															<option value="qualified">Qualifié</option>
+															<option value="proposition">Propostition</option>
+															<option value="won">Gagné</option>
+															<option value="lost">Perdu</option>
+														</select>
+													</div>
+													<div class="col-12">
+														<label class="form-label">Date d'expiration</label>
+														<input type="date" name="dateexp" class="form-control">
+													</div>
+
+
+
+
+												</div><!--end row-->
+											</div>
+										</div>
+									</div>
+
+								</div><!--end row-->
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+				<button type="submit" class="btn btn-primary">Modifier</button>
+			</div>
+		</div>
+	</div>
+</div>
+							  </form>
