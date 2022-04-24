@@ -4,7 +4,7 @@
 
 # Dashboard
 
-![SHARP-RM](/assets/SHARP-RM.PNG)
+![SHARP-RM](/assets/Dashboard.PNG)
 
 
 # Opportunities
